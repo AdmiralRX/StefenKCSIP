@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Pesan</title>
+		<style>
+			#menu{color:blue; background-color:orange; font-size:40px}
+			.table1{margin-top:100px; color:black; text-align:center; width:100%}
+			.table2{padding-left:95%}
+			.table3{padding-left:93%}
+		</style>
+	</head>
+	<body>
+		<center><div id="menu"></div></center>
+		<table align="center" class="table1" border="1" bgcolor="yellow">
+			<thead>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="5">Here is the menu :</td>
+				</tr>
+				<tr>
+					<td>No</td>
+					<td>Food Name</td>
+					<td>Price</td>
+					<td>Quantity</td>
+					<td>Subtotal</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Ayam Goreng Mentega</td>
+					<td>Rp. 18.000</td>
+					<td>
+						<input type="button" name="button" onClick="addMentega()" value="+"></input>
+						<span id="m1">0</span>
+						<input type="button" name="button" onClick="minMentega()" value="-"></input>
+					</td>
+					<td>
+						<p>Rp. <span id="tt1">0</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Ayam Goreng Tepung</td>
+					<td>Rp. 20.000</td>
+					<td>
+						<input type="button" name="button" value="+" onClick="addTepung()"></input>
+						<span id="m2">0</span>
+						<input type="button" name="button" value="-" onClick="minTepung()"></input>
+					</td>
+					<td>
+						<p>Rp. <span id="tt2">0</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Nasi Goreng Ayam</td>
+					<td>Rp. 23.000</td>
+					<td>
+						<input type="button" name="button" value="+" onClick="addNasiAyam()"></input>
+						<span id="m3">0</span>
+						<input type="button" name="button" value="-" onClick="minNasiAyam()"></input>
+					</td>
+					<td>
+						<p>Rp. <span id="tt3">0</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Nasi Tim Ayam</td>
+					<td>Rp. 25.000</td>
+					<td>
+						<input type="button" name="button" value="+" onClick="addTimAyam()"></input>
+						<span id="m4">0</span>
+						<input type="button" name="button" value="-" onClick="minTimAyam()"></input>
+					</td>
+					<td>
+						<p>Rp. <span id="tt4">0</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">TOTAL :</td>
+					<td>Rp. <span id="totall">0</span></td>
+				</tr>
+				<tr>
+					<td colspan="5" class="table2"><input type="button" name="button" value="Order" onClick="Order()"></input></td>
+				</tr>
+				<tr>
+					<td colspan="5" class="table3"><input type="button" name="button" value="All Invoices" onClick="Invoice()"></input></td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<br>
+		<div id="pesan"></div>
+		<div id="invoices"></div>
+	</body>
+	<script language="JavaScript">
+		var ayamMentega=0;
+		var ayamTepung=0;
+		var Nasiayam=0;
+		var TimAyam=0;
+		var subtotal=0;
+		var i=1;
+		var x=0;
+		var y=0;
+		var z=0;
+		var k=0;
+		var o=0;
+		var jml="";
+		document.getElementById('menu').innerHTML = "ALL AVAILABLE MENU";
+		function addMentega()
+		{
+			ayamMentega+=1;
+			document.getElementById('m1').innerHTML = ayamMentega;
+			document.getElementById('tt1').innerHTML = ayamMentega*18000;
+			subtotal+=18000;
+			TotalAll();
+		}
+		function minMentega()
+		{
+			if(ayamMentega > 0)
+			{
+				ayamMentega-=1;
+				document.getElementById('m1').innerHTML = ayamMentega;
+				document.getElementById('tt1').innerHTML = ayamMentega*18000;
+				subtotal-=18000;
+				TotalAll();
+			}
+		}
+		function addTepung()
+		{
+			ayamTepung+=1;
+			document.getElementById('m2').innerHTML = ayamTepung;
+			document.getElementById('tt2').innerHTML = ayamTepung*20000;
+			subtotal+=20000;
+			TotalAll();
+		}
+		function minTepung()
+		{
+			if(ayamTepung>0)
+			{
+			ayamTepung-=1;
+			document.getElementById('m2').innerHTML = ayamTepung;
+			document.getElementById('tt2').innerHTML = ayamTepung*20000;
+			subtotal-=20000;
+			TotalAll();
+			}
+		}
+		function addNasiAyam()
+		{
+			Nasiayam+=1;
+			document.getElementById('m3').innerHTML = Nasiayam;
+			document.getElementById('tt3').innerHTML = Nasiayam*23000;
+			subtotal+=23000;
+			TotalAll();
+		}
+		function minNasiAyam()
+		{
+			if(Nasiayam>0)
+			{
+			Nasiayam-=1;
+			document.getElementById('m3').innerHTML = Nasiayam;
+			document.getElementById('tt3').innerHTML = Nasiayam*23000;
+			subtotal-=23000;
+			TotalAll();
+			}
+		}
+		function addTimAyam()
+		{
+			TimAyam+=1;
+			document.getElementById('m4').innerHTML = TimAyam;
+			document.getElementById('tt4').innerHTML = TimAyam*25000;
+			subtotal+=25000;
+			TotalAll();
+		}
+		function minTimAyam()
+		{
+			if(TimAyam>0)
+			{
+			TimAyam-=1;
+			document.getElementById('m4').innerHTML = TimAyam;
+			document.getElementById('tt4').innerHTML = TimAyam*25000;
+			subtotal-=25000;
+			TotalAll();
+			}
+		}
+		function TotalAll()
+		{
+			document.getElementById('totall').innerHTML = subtotal;
+		}
+		function Order()
+		{	
+			if(ayamMentega==0 && ayamTepung==0 && Nasiayam==0 && TimAyam==0)
+			{
+			alert('PLEASE FILL YOUR ORDER !!!');
+			}
+			else
+			{
+			jml+="<br><h1>INVOICE "+i+" :</h1>"+"<p>Ayam Goreng Mentega "+ayamMentega+" Rp. "+ayamMentega*18000+"</p>"+"<p>Ayam Goreng Tepung "+ayamTepung+" Rp. "+ayamTepung*20000+"</p>"+"<p>Nasi Goreng Ayam "+Nasiayam+" Rp. "+Nasiayam*23000+"</p>"+"<p>Nasi Tim Ayam "+TimAyam+" Rp. "+TimAyam*25000+"</p>"+"<br><p>THE TOTAL : Rp. "+subtotal+"</p><br>"
+			document.getElementById('pesan').innerHTML = jml;
+			i++;
+			}
+			x+=ayamMentega;
+			y+=ayamTepung;
+			z+=Nasiayam;
+			k+=TimAyam;
+			o+=subtotal;
+		}
+		function Invoice()
+		{
+			document.getElementById('invoices').innerHTML = "<br><h1>* ALL INVOICE</h1>"+"<p>Invoices : "+(i-1)+"</p>"+"<p>Ayam Goreng Mentega : "+x+"</p>"+"<p>Ayam Goreng Tepung : "+y+"</p>"+"<p>Nasi Goreng Ayam : "+z+"</p>"+"<p>Nasi Tim Ayam : "+k+"</p>"+"<p>TOTAL PAYMENT ALL INVOICES : Rp. "+o+"</p>";
+		}
+	</script>
+</html>
